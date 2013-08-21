@@ -18,10 +18,15 @@ def search_form(request):
     return render_to_response('books/search_form.html')
 
 def search(request):
+    errors = []
     if 'q' in request.GET and request.GET['q']:
         q = request.GET['q']
-        books = Book.objects.filter(title__icontains=q)
-        return render_to_response('books/search_result.html',{'books':books,'query':q})
-    else:
-        message = 'empty'
-        return HttpResponse(message)
+        if not q:
+            errors.append('Enter a search team')
+        elif len(q) > 20:
+            errors.append('Please enter at most 20 chars')
+        else:
+            books = Book.objects.filter(title__icontains=q)
+            return render_to_response('books/search_result.html',{'books':books,'query':q})
+
+    return render_to_response('books/search_form.html',{'errors':errors})
