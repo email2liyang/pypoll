@@ -1,7 +1,11 @@
 # Create your views here.
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render_to_response
+from django.core.mail import send_mail
 from books.models import Book
+from books.forms import ContactForm
+from django.template import RequestContext
+
 
 def hello(request):
     return HttpResponse('hello world %s %s' % (request.get_full_path(),request.get_host(),))
@@ -30,3 +34,16 @@ def search(request):
             return render_to_response('books/search_result.html',{'books':books,'query':q})
 
     return render_to_response('books/search_form.html',{'errors':errors})
+
+def contact(reqeust):
+    if reqeust.method == 'POST':
+        form = ContactForm(reqeust.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            send_mail(cd['subject'],cd['message'],cd.get('email','noreply@example.com'),'siteowner@example.com')
+            return HttpResponseRedirect('/book/contact/thanks')
+    else:
+        form = ContactForm(initial={'subject':'I love your site'})
+    return render_to_response('books/contact_form.html',{'form':form},context_instance=RequestContext(reqeust))
+
+
