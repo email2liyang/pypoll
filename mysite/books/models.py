@@ -1,5 +1,12 @@
 from django.db import models
 
+class BookManager(models.Manager):
+    def title_count(self,keyword):
+        return self.filter(title__icontains=keyword).count()
+
+class IvanBookManager(models.Manager):
+    def get_query_set(self):
+        return super(IvanBookManager,self).get_query_set().filter(id=1)
 # Create your models here.
 class Publisher(models.Model):
     name = models.CharField(max_length=30)
@@ -27,9 +34,13 @@ class Book(models.Model):
     publisher = models.ForeignKey(Publisher)
     publication_date = models.DateField()
     num_pages = models.IntegerField(blank=True, null=True)
+    objects = BookManager()
+    ivan_objects = IvanBookManager()
 
     def __unicode__(self):
         return self.title
+
+
 
 
 
