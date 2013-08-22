@@ -1,0 +1,13 @@
+<ul>
+
+<li>This will be escaped: {{ data }}</li>
+<li>This will not be escaped: {{ data|safe }}</li>
+<li>
+{% autoescape off %}
+    This will not be escaped:{{ data }}
+{% endautoescape %}
+</li>
+<li>
+    you must make sure default filter have escaped text like {{  no_data|default:"2 &lt; 3" }}
+</li>
+</ul>

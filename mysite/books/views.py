@@ -10,6 +10,9 @@ from django.template import RequestContext
 def hello(request):
     return HttpResponse('hello world %s %s' % (request.get_full_path(),request.get_host(),))
 
+def escape(request):
+    return render_to_response('books/escape.html',{'data':'<script>document.write("abc")</script>'})
+
 def display_meta(request):
     values = request.META.items()
     values.sort()
