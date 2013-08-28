@@ -2,9 +2,15 @@
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.core.mail import send_mail
-from books.models import Book
+from django.views.generic import ListView
+from books.models import Book, Publisher
 from books.forms import ContactForm
 from django.template import RequestContext
+
+class PublisherList(ListView):
+    model = Publisher
+    context_object_name = 'my_favourite_publishers'
+
 
 
 def hello(request):
