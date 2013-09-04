@@ -8,6 +8,7 @@ from books.forms import ContactForm
 from django.template import RequestContext
 import csv
 from reportlab.pdfgen import canvas
+from cStringIO import StringIO
 
 class PublisherList(ListView):
     model = Publisher
@@ -75,14 +76,16 @@ def hello_pdf(reqeust):
     response = HttpResponse(mimetype='application/pdf')
     response['Content-Disposition']='attachment;filename=hello.pdf'
 
+    tmp = StringIO()
     #create PDF Object,using the response object as it's file
-    p = canvas.Canvas(response)
+    p = canvas.Canvas(tmp)
 
     #Draw thing on pdf
-    p.drawString(100,100,"hello world");
+    p.drawString(50,50,"hello world cStringIO");
     p.showPage()
     p.save()
 
+    response.write(tmp.getvalue())
     return response
 
 
