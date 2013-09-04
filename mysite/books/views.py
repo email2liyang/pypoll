@@ -88,6 +88,17 @@ def hello_pdf(reqeust):
     response.write(tmp.getvalue())
     return response
 
+def show_cookie(request):
+    html = []
+    for k,v in request.COOKIES.items():
+        html.append("<tr><td>%s</td><td>%s</td></tr" %(k,v))
+    return HttpResponse('<table>%s</table>' % '\n'.join(html))
+
+def set_cookie(request):
+    response = HttpResponse()
+    response.set_cookie('cookie','cookie_value')
+
+    return response
 
 
 

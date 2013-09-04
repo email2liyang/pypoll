@@ -14,4 +14,6 @@ urlpatterns = patterns('books.views',
                        url(r'^publishers/$', PublisherList.as_view(template_name='books/publishers.html')),
                        url(r'^csv/$', 'passengers_csv'),
                        url(r'^pdf/$', 'hello_pdf'),
+                       url(r'^show_cookie/$', 'show_cookie'),
+                       url(r'^set_cookie/$', 'set_cookie'),
                        )
