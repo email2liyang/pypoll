@@ -90,11 +90,14 @@ def hello_pdf(reqeust):
 
 def show_cookie(request):
     html = []
+    html.append('<tr><td>%s</td><td>%s</td></tr' %('username',request.session.get('member_id','nobody')))
     for k,v in request.COOKIES.items():
         html.append("<tr><td>%s</td><td>%s</td></tr" %(k,v))
+
     return HttpResponse('<table>%s</table>' % '\n'.join(html))
 
 def set_cookie(request):
+    request.session['member_id']='ivan'
     response = HttpResponse()
     response.set_cookie('cookie','cookie_value')
 
