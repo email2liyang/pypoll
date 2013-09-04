@@ -7,6 +7,7 @@ from books.models import Book, Publisher
 from books.forms import ContactForm
 from django.template import RequestContext
 import csv
+from reportlab.pdfgen import canvas
 
 class PublisherList(ListView):
     model = Publisher
@@ -68,6 +69,23 @@ def passengers_csv(request):
     for (year,num) in zip(range(1995,2006),PASSENGERS):
         writer.writerow([year,num])
     return response
+
+def hello_pdf(reqeust):
+    #create response object with a appropriate PDF headers
+    response = HttpResponse(mimetype='application/pdf')
+    response['Content-Disposition']='attachment;filename=hello.pdf'
+
+    #create PDF Object,using the response object as it's file
+    p = canvas.Canvas(response)
+
+    #Draw thing on pdf
+    p.drawString(100,100,"hello world");
+    p.showPage()
+    p.save()
+
+    return response
+
+
 
 
 
