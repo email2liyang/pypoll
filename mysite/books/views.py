@@ -6,6 +6,7 @@ from django.views.generic import ListView
 from books.models import Book, Publisher
 from books.forms import ContactForm
 from django.template import RequestContext
+import csv
 
 class PublisherList(ListView):
     model = Publisher
@@ -54,5 +55,21 @@ def contact(reqeust):
     else:
         form = ContactForm(initial={'subject':'I love your site'})
     return render_to_response('books/contact_form.html',{'form':form},context_instance=RequestContext(reqeust))
+
+def passengers_csv(request):
+    PASSENGERS=[146,184,235,200,226,251,299,273,281,304,203]
+    #create the http resonse object with appropriate CSV header
+    response = HttpResponse(mimetype='text/csv')
+    response['Content-Disposition']='attachment;filename=passengers.csv'
+
+    #create CSV writer using http response as a "file"
+    writer = csv.writer(response)
+    writer.writerow(['Year','Passengers'])
+    for (year,num) in zip(range(1995,2006),PASSENGERS):
+        writer.writerow([year,num])
+    return response
+
+
+
 
 
