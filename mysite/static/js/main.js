@@ -1,6 +1,7 @@
 jQuery(function($){
 
-var CHAKRA = window.CHAKRA || {};
+
+var IVAN = window.IVAN || {};
 
 /* ==================================================
    Mobile Navigation
@@ -8,7 +9,7 @@ var CHAKRA = window.CHAKRA || {};
 /* Clone Menu for use later */
 var mobileMenuClone = $('#menu').clone().attr('id', 'navigation-mobile');
 
-CHAKRA.mobileNav = function(){
+IVAN.mobileNav = function(){
 	var windowWidth = $(window).width();
 	
 	// Show Menu or Hide the Menu
@@ -26,7 +27,7 @@ CHAKRA.mobileNav = function(){
 }
 
 // Call the Event for Menu 
-CHAKRA.listenerMenu = function(){
+IVAN.listenerMenu = function(){
 	$('#mobile-nav').on('click', function(e){
 		$(this).toggleClass('open');
 		
@@ -46,7 +47,7 @@ CHAKRA.listenerMenu = function(){
    Slider Options
 ================================================== */
 
-CHAKRA.slider = function(){
+IVAN.slider = function(){
 	$.supersized({
 		// Functionality
 		slideshow               :   1,			// Slideshow on/off
@@ -96,7 +97,7 @@ CHAKRA.slider = function(){
    Navigation Fix
 ================================================== */
 
-CHAKRA.nav = function(){
+IVAN.nav = function(){
 	$('.sticky-nav').waypoint('sticky');
 }
 
@@ -105,7 +106,7 @@ CHAKRA.nav = function(){
    Filter Works
 ================================================== */
 
-CHAKRA.filter = function (){
+IVAN.filter = function (){
 	if($('#projects').length > 0){		
 		var $container = $('#projects');
 		
@@ -158,7 +159,7 @@ CHAKRA.filter = function (){
    FancyBox
 ================================================== */
 
-CHAKRA.fancyBox = function(){
+IVAN.fancyBox = function(){
 	if($('.fancybox').length > 0 || $('.fancybox-media').length > 0 || $('.fancybox-various').length > 0){
 		
 		$(".fancybox").fancybox({				
@@ -199,7 +200,7 @@ CHAKRA.fancyBox = function(){
    Contact Form
 ================================================== */
 
-CHAKRA.contactForm = function(){
+IVAN.contactForm = function(){
 	$("#contact-submit").on('click',function() {
 		$contact_form = $('#contact-form');
 		
@@ -229,7 +230,7 @@ CHAKRA.contactForm = function(){
    Twitter Feed
 ================================================== */
 
-CHAKRA.tweetFeed = function(){
+IVAN.tweetFeed = function(){
 	
 	var valueTop = -64; // Margin Top Value
 	
@@ -262,7 +263,7 @@ CHAKRA.tweetFeed = function(){
    Menu Highlight
 ================================================== */
 
-CHAKRA.menu = function(){
+IVAN.menu = function(){
 	$('#menu-nav, #menu-nav-mobile').onePageNav({
 		currentClass: 'current',
     	changeHash: false,
@@ -278,7 +279,7 @@ CHAKRA.menu = function(){
    Next Section
 ================================================== */
 
-CHAKRA.goSection = function(){
+IVAN.goSection = function(){
 	$('#nextsection').on('click', function(){
 		$target = $($(this).attr('href')).offset().top-30;
 		
@@ -291,7 +292,7 @@ CHAKRA.goSection = function(){
    GoUp
 ================================================== */
 
-CHAKRA.goUp = function(){
+IVAN.goUp = function(){
 	$('#goUp').on('click', function(){
 		$target = $($(this).attr('href')).offset().top-30;
 		
@@ -305,7 +306,7 @@ CHAKRA.goUp = function(){
 	Scroll to Top
 ================================================== */
 
-CHAKRA.scrollToTop = function(){
+IVAN.scrollToTop = function(){
 	var windowWidth = $(window).width(),
 		didScroll = false;
 
@@ -338,7 +339,7 @@ CHAKRA.scrollToTop = function(){
 ================================================== */
 
 // Fix Hover on Touch Devices
-CHAKRA.utils = function(){
+IVAN.utils = function(){
 	
 	$('.item-thumbs').bind('touchstart', function(){
 		$(".active").removeClass("active");
@@ -351,7 +352,7 @@ CHAKRA.utils = function(){
    Accordion
 ================================================== */
 
-CHAKRA.accordion = function(){
+IVAN.accordion = function(){
 	var accordion_trigger = $('.accordion-heading.accordionize');
 	
 	accordion_trigger.delegate('.accordion-toggle','click', function(event){
@@ -373,7 +374,7 @@ CHAKRA.accordion = function(){
    Toggle
 ================================================== */
 
-CHAKRA.toggle = function(){
+IVAN.toggle = function(){
 	var accordion_trigger_toggle = $('.accordion-heading.togglize');
 	
 	accordion_trigger_toggle.delegate('.accordion-toggle','click', function(event){
@@ -393,7 +394,7 @@ CHAKRA.toggle = function(){
    Tooltip
 ================================================== */
 
-CHAKRA.toolTip = function(){ 
+IVAN.toolTip = function(){
     $('a[data-toggle=tooltip]').tooltip();
 }
 
@@ -401,7 +402,7 @@ CHAKRA.toolTip = function(){
    Map
 ================================================== */
 
-CHAKRA.map = function(){
+IVAN.map = function(){
 	if($('.map').length > 0)
 	{
 
@@ -483,14 +484,14 @@ CHAKRA.map = function(){
 	Init
 ================================================== */
 
-CHAKRA.slider();
+IVAN.slider();
 
 $(document).ready(function(){
 	// Call placeholder.js to enable Placeholder Property for IE9
 	Modernizr.load([
 	{
 		test: Modernizr.input.placeholder,
-		nope: '_include/js/placeholder.js', 
+		nope: 'js/Placeholders.min.js',
 		complete : function() {
 				if (!Modernizr.input.placeholder) {
 						Placeholders.init({
@@ -511,27 +512,27 @@ $(document).ready(function(){
 		showPercentage: true,
 		autoClose: true
 	});
-	
-	CHAKRA.nav();
-	CHAKRA.mobileNav();
-	CHAKRA.listenerMenu();
-	CHAKRA.menu();
-	CHAKRA.goSection();
-	CHAKRA.goUp();
-	CHAKRA.filter();
-	CHAKRA.fancyBox();
-	CHAKRA.contactForm();
-	CHAKRA.tweetFeed();
-	CHAKRA.scrollToTop();
-	CHAKRA.utils();
-	CHAKRA.accordion();
-	CHAKRA.toggle();
-	CHAKRA.toolTip();
-	CHAKRA.map();
+
+	IVAN.nav();
+	IVAN.mobileNav();
+	IVAN.listenerMenu();
+	IVAN.menu();
+	IVAN.goSection();
+	IVAN.goUp();
+	IVAN.filter();
+	IVAN.fancyBox();
+	IVAN.contactForm();
+	IVAN.tweetFeed();
+	IVAN.scrollToTop();
+	IVAN.utils();
+	IVAN.accordion();
+	IVAN.toggle();
+	IVAN.toolTip();
+	IVAN.map();
 });
 
 $(window).resize(function(){
-	CHAKRA.mobileNav();
+	IVAN.mobileNav();
 });
 
 });

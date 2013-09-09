@@ -534,7 +534,6 @@ header #logo a {
 	background: url(../img/logo.png) no-repeat;
 	width: 96px;
 	height: 30px;
-	text-indent: -9999px;
 	display: block;
 	opacity: 1;
 	filter: alpha(opacity=100);
