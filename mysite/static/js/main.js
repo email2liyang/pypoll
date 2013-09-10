@@ -30,16 +30,11 @@ IVAN.mobileNav = function(){
 IVAN.listenerMenu = function(){
 	$('#mobile-nav').on('click', function(e){
 		$(this).toggleClass('open');
-		
-		$('#navigation-mobile').stop().slideToggle(350, 'easeOutExpo');
-		
+        $('#navigation-mobile').stop().slideToggle(350);
 		e.preventDefault();
 	});
 	
-	$('#menu-nav-mobile a').on('click', function(){
-		$('#mobile-nav').removeClass('open');
-		$('#navigation-mobile').slideUp(350, 'easeOutExpo');
-	});
+
 }
 
 
@@ -258,22 +253,6 @@ IVAN.tweetFeed = function(){
 	
 }
 
-
-/* ==================================================
-   Menu Highlight
-================================================== */
-
-IVAN.menu = function(){
-	$('#menu-nav, #menu-nav-mobile').onePageNav({
-		currentClass: 'current',
-    	changeHash: false,
-    	scrollSpeed: 750,
-    	scrollOffset: 30,
-    	scrollThreshold: 0.5,
-		easing: 'easeOutExpo',
-		filter: ':not(.external)'
-	});
-}
 
 /* ==================================================
    Next Section
@@ -504,19 +483,11 @@ $(document).ready(function(){
 		}
 	}
 	]);
-	
-	// Preload the page with jPreLoader
-	$('body').jpreLoader({
-		splashID: "#jSplash",
-		showSplash: true,
-		showPercentage: true,
-		autoClose: true
-	});
+
 
 	IVAN.nav();
 	IVAN.mobileNav();
 	IVAN.listenerMenu();
-	IVAN.menu();
 	IVAN.goSection();
 	IVAN.goUp();
 	IVAN.filter();
